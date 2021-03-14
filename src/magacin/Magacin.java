@@ -13,90 +13,166 @@ public class Magacin implements MagacinInterfejs {
 	
 	@Override
 	public void dodajKnjigu(Knjiga knjiga) {
-		if(knjiga!= null && !knjige.contains(knjiga)) {
-			knjige.add(knjiga);
-		}else if(knjiga!=null && knjige.contains(knjiga)) {
-			int ind = knjige.indexOf(knjiga);
-			int kol = knjige.get(ind).getKolicina();
+
+		if(knjiga == null) {
+			throw new RuntimeException("Knjiga ne sme biti null!");
+		}
+		if(knjige.contains(knjiga)) {
+			int indeks = knjige.indexOf(knjiga);
+			int kolicina = knjige.get(indeks).getKolicina();
 			try {
-				knjige.get(ind).setKolicina(kol+ knjiga.getKolicina());
+				knjige.get(indeks).setKolicina(kolicina + knjiga.getKolicina());
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		}else {
+			knjige.add(knjiga);
 		}
-		throw new RuntimeException("Ne moze se dodati knjiga koja je null!");
+		
 	}
 
 	@Override
 	public void obrisiKnjigu(Knjiga knjiga) {
-		// TODO Auto-generated method stub
-
+		
+		if(knjiga == null) {
+			throw new RuntimeException("Knjiga ne sme biti null!");
+		}
+		if(knjige.contains(knjiga)) {
+			int indeks = knjige.indexOf(knjiga);
+			int kolicina = knjige.get(indeks).getKolicina();
+			try {
+				if(kolicina>knjiga.getKolicina()) {
+					knjige.get(indeks).setKolicina(kolicina - knjiga.getKolicina());
+				} else {
+					knjige.remove(knjiga);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else {
+			throw new RuntimeException("Knjiga ne postoji u magacinu pa se ne moze obrisati!");
+		}
 	}
 
 	@Override
 	public Knjiga pronadjiIVratiKnjigu(int sifra) {
-		// TODO Auto-generated method stub
+		
+		for (Knjiga knjiga : knjige) {
+			if(sifra== knjiga.getSifra()) {
+				return knjiga;
+			}
+		}
+		
 		return null;
 	}
 
 	@Override
 	public void dodajKancelarijskiMaterijal(KancelarijskiMaterijal materijal) {
 
-		if(materijal!= null && !kancelarijskiMaterijali.contains(materijal)) {
-			kancelarijskiMaterijali.add(materijal);
-		}else if(materijal!=null && kancelarijskiMaterijali.contains(materijal)) {
-			int ind = kancelarijskiMaterijali.indexOf(materijal);
-			int kol = kancelarijskiMaterijali.get(ind).getKolicina();
+		
+		if(materijal == null) {
+			throw new RuntimeException("Kancelarijski materijal ne sme biti null!");
+		}
+		if(kancelarijskiMaterijali.contains(materijal)) {
+			int indeks = kancelarijskiMaterijali.indexOf(materijal);
+			int kolicina = kancelarijskiMaterijali.get(indeks).getKolicina();
 			try {
-				kancelarijskiMaterijali.get(ind).setKolicina(kol+ materijal.getKolicina());
+				kancelarijskiMaterijali.get(indeks).setKolicina(kolicina + materijal.getKolicina());
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		}else {
+			kancelarijskiMaterijali.add(materijal);
 		}
-		throw new RuntimeException("Ne moze se dodati kancelarijski materijal koji je null!");
 	}
 
 	@Override
 	public void obrisiKancelarijskiMaterijal(KancelarijskiMaterijal materijal) {
-		// TODO Auto-generated method stub
-
+		
+		if(materijal == null) {
+			throw new RuntimeException("Kancelarijski materijal ne sme biti null!");
+		}
+		if(kancelarijskiMaterijali.contains(materijal)) {
+			int indeks = kancelarijskiMaterijali.indexOf(materijal);
+			int kolicina = kancelarijskiMaterijali.get(indeks).getKolicina();
+			try {
+				if(kolicina>materijal.getKolicina()) {
+					kancelarijskiMaterijali.get(indeks).setKolicina(kolicina - materijal.getKolicina());
+				} else {
+					kancelarijskiMaterijali.remove(materijal);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else {
+			throw new RuntimeException("Kancelarijski materijal ne postoji u magacinu pa se ne moze obrisati!");
+		}
 	}
 
 	@Override
 	public KancelarijskiMaterijal pronadjiIVratiKancMaterijal(int sifra) {
-		// TODO Auto-generated method stub
+		
+		for (KancelarijskiMaterijal materijal : kancelarijskiMaterijali) {
+			if(sifra == materijal.getSifra()) {
+				return materijal;
+			}
+		}
+		
 		return null;
 	}
 
 	@Override
 	public void dodajKucnuHemiju(KucnaHemija hemija) {
-
-		if(hemija!= null && !kucneHemije.contains(hemija)) {
-			kucneHemije.add(hemija);
-		}else if(hemija!=null && kucneHemije.contains(hemija)) {
-			int ind = kucneHemije.indexOf(hemija);
-			int kol = kucneHemije.get(ind).getKolicina();
+		
+		if(hemija == null) {
+			throw new RuntimeException("Kucna hemija ne sme biti null!");
+		}
+		if(kucneHemije.contains(hemija)) {
+			int indeks = kucneHemije.indexOf(hemija);
+			int kolicina = kucneHemije.get(indeks).getKolicina();
 			try {
-				kucneHemije.get(ind).setKolicina(kol+ hemija.getKolicina());
+				kucneHemije.get(indeks).setKolicina(kolicina + hemija.getKolicina());
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		}else {
+			kucneHemije.add(hemija);
 		}
-		throw new RuntimeException("Ne moze se dodati kucna hemija koja je null!");
+
 	}
 
 	@Override
 	public void obrisiKucnuHemiju(KucnaHemija hemija) {
-		// TODO Auto-generated method stub
 
+		if(hemija == null) {
+			throw new RuntimeException("Kucna hemija ne sme biti null!");
+		}
+		if(kucneHemije.contains(hemija)) {
+			int indeks = kucneHemije.indexOf(hemija);
+			int kolicina = kucneHemije.get(indeks).getKolicina();
+			try {
+				if(kolicina>hemija.getKolicina()) {
+					kucneHemije.get(indeks).setKolicina(kolicina - hemija.getKolicina());
+				} else {
+					kucneHemije.remove(hemija);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else {
+			throw new RuntimeException("Kucna hemija ne postoji u magacinu pa se ne moze obrisati!");
+		}
 	}
 
 	@Override
 	public KucnaHemija pronadjiIVratiKucnuHemiju(int sifra) {
-		// TODO Auto-generated method stub
+		
+		for (KucnaHemija hemija : kucneHemije) {
+			if(sifra == hemija.getSifra()) {
+				return hemija;
+			}
+		}
+		
 		return null;
 	}
 
