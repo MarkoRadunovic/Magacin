@@ -84,11 +84,7 @@ public class KucnaHemija {
 		if (getClass() != obj.getClass())
 			return false;
 		KucnaHemija other = (KucnaHemija) obj;
-		if (naziv == null) {
-			if (other.naziv != null)
-				return false;
-		} else if (!naziv.equals(other.naziv))
-			return false;
+		
 		if (sifra != other.sifra)
 			return false;
 		return true;

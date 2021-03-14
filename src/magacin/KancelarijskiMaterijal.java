@@ -64,11 +64,7 @@ public class KancelarijskiMaterijal {
 		if (getClass() != obj.getClass())
 			return false;
 		KancelarijskiMaterijal other = (KancelarijskiMaterijal) obj;		
-		if (naziv == null) {
-			if (other.naziv != null)
-				return false;
-		} else if (!naziv.equals(other.naziv))
-			return false;
+		
 		if (sifra != other.sifra)
 			return false;
 		return true;
