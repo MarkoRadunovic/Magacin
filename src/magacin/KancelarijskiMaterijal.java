@@ -11,32 +11,40 @@ public class KancelarijskiMaterijal {
 	public String getNaziv() {
 		return naziv;
 	}
-	public void setNaziv(String naziv) {
-		this.naziv = naziv;
+	public void setNaziv(String naziv) throws Exception {
+		if(naziv==null || naziv.isEmpty()) {
+			throw new Exception("Naziv ne sme biti null ili prazan string!");
+		}
+		else this.naziv = naziv;
 	}
 	public int getSifra() {
 		return sifra;
 	}
-	public void setSifra(int sifra) {
+	public void setSifra(int sifra) throws Exception {
+		if(sifra<0) {
+			throw new Exception("Sifra mora biti pozitivan ceo broj!");
+		}
 		this.sifra = sifra;
 	}
 	public String getOpis() {
 		return opis;
 	}
-	public void setOpis(String opis) {
-		this.opis = opis;
+	public void setOpis(String opis) throws Exception {
+		if(naziv==null || naziv.isEmpty()) {
+			throw new Exception("Opis ne sme biti null ili prazan string!");
+		}
+		else this.opis = opis;
 	}
 	public int getKolicina() {
 		return kolicina;
 	}
-	public void setKolicina(int kolicina) {
+	public void setKolicina(int kolicina) throws Exception {
+		if(kolicina<=0) {
+			throw new Exception("Kolicina mora biti pozitivan broj veci od nule!");
+		}
 		this.kolicina = kolicina;
 	}
-	@Override
-	public String toString() {
-		return "KancelarijskiMaterijal [naziv=" + naziv + ", sifra=" + sifra + ", opis=" + opis + ", kolicina="
-				+ kolicina + "]";
-	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
